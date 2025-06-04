@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>ProBench: Judging Multimodal Foundation Models on Open-ended Multi-domain Expert Tasks</h1> 
+  <h1>GRPO-Powered GUI Grounding</h1> 
   
     
 <div style="width: 35%; text-align: center; margin:auto;">
