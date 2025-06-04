@@ -193,5 +193,5 @@ Please contact `yan.yang@anu.edu.au` for any queries.
 
 ## Acknowledgement
 
-This repository is built using the [arena-hard-auto](https://github.com/om-ai-lab/VLM-R1) repository.
+This repository is built using the [VLM-R1](https://github.com/om-ai-lab/VLM-R1) repository.
 
