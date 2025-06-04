@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "image": "images/1.png",
+        "bbox": [
+            457,
+            152,
+            542,
+            173
+        ],
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>Go to the Past section"
+            },
+            {
+                "from": "gpt",
+                "value": "(500, 162)"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "image": "images/2.png",
+        "bbox": [
+            38,
+            182,
+            164,
+            239
+        ],
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>Click on the Mobile category at the top left corner of the screen"
+            },
+            {
+                "from": "gpt",
+                "value": "(101, 210)"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "image": "images/3.png",
+        "bbox": [
+            845,
+            146,
+            966,
+            196
+        ],
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>close the pop up"
+            },
+            {
+                "from": "gpt",
+                "value": "(905, 171)"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "image": "images/4.png",
+        "bbox": [
+            38,
+            166,
+            961,
+            218
+        ],
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>Click on the search bar"
+            },
+            {
+                "from": "gpt",
+                "value": "(500, 192)"
+            }
+        ]
+    }
+]
