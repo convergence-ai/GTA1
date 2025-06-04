@@ -3,7 +3,7 @@
   
     
 <div style="width: 35%; text-align: center; margin:auto;">
-      <img style="width: 35%" src="assets/img/logo.png">
+      <img style="width: 35%" src="assets/img/thumbnail.png">
 </div>
 
     
