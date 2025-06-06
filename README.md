@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>GRPO-Powered GUI Grounding</h1> 
+  <h1>GRPO for GUI Grounding Done Right</h1> 
   
     
 <div style="width: 35%; text-align: center; margin:auto;">
