@@ -12,7 +12,7 @@
    </div>   
 </div>
     
-Reinforcement learning (RL) (e.g., GRPO) helps with grounding because of its inherent objective alignment—rewarding any successful clicks—rather than relying on long textual Chain-of-Thought (CoT) reasoning. In certain cases, RL can also support grounding through reasoning, which we’ll discuss later. We’re sharing a recipe for achieving state-of-the-art GUI grounding performance using GRPO.
+Reinforcement learning (RL) (e.g., GRPO) helps with grounding because of its inherent objective alignment—rewarding any successful clicks—rather than relying on long textual Chain-of-Thought (CoT) reasoning (often referred to as “thinking” in the literature). In certain cases, RL can also support grounding through reasoning, which we’ll discuss later. We’re sharing a recipe for achieving state-of-the-art GUI grounding performance using GRPO.
 
 
 ## 🛠️ Setup
