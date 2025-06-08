@@ -78,10 +78,8 @@ class GRPOModelConfig(ModelConfig):
 SYSTEM_PROMPT = '''
 You are an expert UI element locator. Given a GUI image and a user's element description, provide the coordinates of the specified element as a single (x,y) point. The image resolution is height {height} and width {width}. For elements with area, return the center point.
 
-Provide only the coordinate pair within <answer></answer> tags.
-
-Output exactly:
-<answer>(x,y)</answer>
+Output the coordinate pair exactly:
+(x,y)
 '''
 SYSTEM_PROMPT = SYSTEM_PROMPT.strip()
 
@@ -147,7 +145,11 @@ class LazySupervisedDataset(Dataset):
 
 def parse_coordinates(raw_string):
     matches = re.findall(r"\((-?\d*\.?\d+),\s*(-?\d*\.?\d+)\)", raw_string)
-    return [tuple(map(int, match)) for match in matches][0]
+    matches = [tuple(map(int, match)) for match in matches]
+    if len(matches) > 1:
+        return -1,-1
+    else:
+        return matches[0]
 
 def click_reward(completions, solution, **kwargs):
     def isin(x,y, sol):
@@ -166,16 +168,12 @@ def click_reward(completions, solution, **kwargs):
         return False
     contents = [completion[0]["content"] for completion in completions]
     rewards = []
-    answer_tag_pattern = r'<answer>(.*?)</answer>'
     for content, sol in zip(contents, solution):
         reward = 0.0
         try:
-            content_answer_match = re.search(answer_tag_pattern, content, re.DOTALL)
-            if content_answer_match:
-                content_answer = content_answer_match.group(1).strip()
-                pred_x, pred_y = parse_coordinates(content_answer)
-                if isin(pred_x,pred_y, sol):
-                    reward = 1.0
+            pred_x, pred_y = parse_coordinates(content)
+            if isin(pred_x,pred_y, sol):
+                reward = 1.0
         except Exception:
             pass  # Continue to next verification method if this fails
                 

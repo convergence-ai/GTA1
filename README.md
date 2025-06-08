@@ -73,7 +73,6 @@ srun torchrun \
     --max_completion_length 128 \
     --num_generations 8 \
     --per_device_train_batch_size 1 \
-    --masked_average true \
     --freeze_vision_modules true \
     --reward_funcs accuracy \
     --beta 0 \
@@ -109,10 +108,8 @@ import re
 SYSTEM_PROMPT = '''
 You are an expert UI element locator. Given a GUI image and a user's element description, provide the coordinates of the specified element as a single (x,y) point. The image resolution is height {height} and width {width}. For elements with area, return the center point.
 
-Provide only the coordinate pair within <answer></answer> tags.
-
-Output exactly:
-<answer>(x,y)</answer>
+Output the coordinate pair exactly:
+(x,y)
 '''
 SYSTEM_PROMPT=SYSTEM_PROMPT.strip()
 

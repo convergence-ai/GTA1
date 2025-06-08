@@ -179,14 +179,6 @@ class GRPOConfig(TrainingArguments):
             "(`pip install vllm`)."
         },
     )
-    masked_average: Optional[bool] = field(
-        default=False,
-        metadata={
-            "help": "Whether to use vLLM for generating completions. If set to `True`, ensure that a GPU is kept "
-            "unused for training, as vLLM will require one for generation. vLLM must be installed "
-            "(`pip install vllm`)."
-        },
-    )
     vllm_device: Optional[str] = field(
         default="auto",
         metadata={

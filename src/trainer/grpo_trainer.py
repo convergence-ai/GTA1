@@ -241,15 +241,7 @@ class Qwen2VLGRPOTrainer(Trainer):
                     f"a `torch.dtype` (e.g., 'float32'), but got {torch_dtype}."
                 )
             model_init_kwargs["use_cache"] = True
-            if "Qwen2-VL" in model_id:
-                model = Qwen2VLForConditionalGeneration.from_pretrained(model, **model_init_kwargs)
-            elif "Qwen2.5-VL" in model_id:
-                model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model, **model_init_kwargs)
-            elif "Aria" in model_id:
-                model_init_kwargs.pop("use_cache")
-                model = AriaForConditionalGeneration.from_pretrained(model, **model_init_kwargs)
-            else:
-                model = AutoModelForCausalLM.from_pretrained(model, **model_init_kwargs)
+            model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model, **model_init_kwargs)
         else:
             model_id = model.config._name_or_path
             if args.model_init_kwargs is not None:
@@ -291,14 +283,7 @@ class Qwen2VLGRPOTrainer(Trainer):
         # Reference model
         if args.beta > 0:
             if is_deepspeed_zero3_enabled():
-                if "Qwen2-VL" in model_id:
-                    self.ref_model = Qwen2VLForConditionalGeneration.from_pretrained(model_id, **model_init_kwargs)
-                elif "Qwen2.5-VL" in model_id:
-                    self.ref_model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model_id, **model_init_kwargs)
-                elif "Aria" in model_id:
-                    self.ref_model = AriaForConditionalGeneration.from_pretrained(model_id, **model_init_kwargs)
-                else:
-                    self.ref_model = AutoModelForCausalLM.from_pretrained(model_id, **model_init_kwargs)
+                self.ref_model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model_id, **model_init_kwargs)
             elif peft_config is None:
                 # If PEFT configuration is not provided, create a reference model based on the initial model.
                 self.ref_model = create_reference_model(model)
@@ -311,17 +296,13 @@ class Qwen2VLGRPOTrainer(Trainer):
 
         # Processing class
         if processing_class is None:
-            if "Qwen2-VL" in model_id or "Qwen2.5-VL" in model_id or "Aria" in model_id:
-                processing_class = AutoProcessor.from_pretrained(model_id)
-                pad_token_id = processing_class.tokenizer.pad_token_id
-                processing_class.pad_token_id = pad_token_id
-                processing_class.eos_token_id = processing_class.tokenizer.eos_token_id
-                if "Qwen" in model_id or "Qwen2.5-VL" in model_id:
-                    processing_class.image_processor.max_pixels = max_pixels
-                    processing_class.image_processor.min_pixels = min_pixels
-            else:
-                processing_class = AutoTokenizer.from_pretrained(model.config._name_or_path, padding_side="left")
-                pad_token_id = processing_class.pad_token_id
+
+            processing_class = AutoProcessor.from_pretrained(model_id)
+            pad_token_id = processing_class.tokenizer.pad_token_id
+            processing_class.pad_token_id = pad_token_id
+            processing_class.eos_token_id = processing_class.tokenizer.eos_token_id
+            processing_class.image_processor.max_pixels = max_pixels
+            processing_class.image_processor.min_pixels = min_pixels
 
         # Reward functions
         if not isinstance(reward_funcs, list):
@@ -720,10 +701,7 @@ class Qwen2VLGRPOTrainer(Trainer):
             self._metrics["kl"].append(self.accelerator.gather_for_metrics(mean_kl).mean().item())
 
         # Compute final loss
-        if self.args.masked_average:
-            loss = masked_mean(per_token_loss, completion_mask)
-        else:
-            loss = ((per_token_loss * completion_mask).sum(dim=1) / completion_mask.sum(dim=1)).mean()
+        loss = ((per_token_loss * completion_mask).sum(dim=1) / completion_mask.sum(dim=1)).mean()
 
         # Log clip ratio
         is_clipped = (per_token_loss1 < per_token_loss2).float()
