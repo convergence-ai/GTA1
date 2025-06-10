@@ -18,7 +18,7 @@ Reinforcement learning (RL) (e.g., GRPO) helps with grounding because of its inh
 ## 🛠️ Setup
 
 - Install the environment by following the instructions [here](https://github.com/om-ai-lab/VLM-R1?tab=readme-ov-file#%EF%B8%8F-setup).
-- Download the training dataset from the [link]().
+- Download the training dataset from the [link](https://huggingface.co/datasets/HelloKKMe/grounding_dataset/tree/main).
 - If using a custom dataset, please store the data as a list of JSON objects, where each entry follows the structure below:
 
 <pre>
@@ -42,7 +42,7 @@ Reinforcement learning (RL) (e.g., GRPO) helps with grounding because of its inh
 
 ## 🧹 Data Cleaning
 
-We provide a cleaned version of the dataset on [Hugging Face]().
+We provide a cleaned version of the dataset on [Hugging Face](https://huggingface.co/datasets/HelloKKMe/grounding_dataset/tree/main).
 
 If you're using a custom dataset, please refer to the [preprocessing folder](preprocessing/README.md) for instructions on how to clean and format your data.
 
