@@ -8,11 +8,11 @@
 
     
 <div>
-   <a href="https://huggingface.co/datasets/HelloKKMe/grounding_dataset/tree/main"><strong>Dataset</strong></a>  | <a href=""><strong>Blog</strong></a> |  <a href="https://huggingface.co/HelloKKMe/grounding-r1-7B"><strong>7B Model</strong></a>  |  <a href="https://huggingface.co/HelloKKMe/grounding-r1-32B"><strong>32B Model</strong></a> |  <a href="https://arxiv.org/pdf/2503.06885"><strong>72B Model</strong></a>
+   <a href="https://huggingface.co/datasets/HelloKKMe/grounding_dataset/tree/main"><strong>Dataset</strong></a>  | <a href=""><strong>Blog</strong></a> |  <a href="https://huggingface.co/HelloKKMe/grounding-r1-7B"><strong>7B Model</strong></a>  |  <a href="https://huggingface.co/HelloKKMe/grounding-r1-32B"><strong>32B Model</strong></a> |  <a href="https://huggingface.co/HelloKKMe/grounding-r1-72B"><strong>72B Model</strong></a>
    </div>   
 </div>
     
-Reinforcement learning (RL) (e.g., GRPO) helps with grounding because of its inherent objective alignment—rewarding any successful clicks—rather than relying on long textual Chain-of-Thought (CoT) reasoning (often referred to as “thinking” in the literature). In certain cases, RL can also support grounding through reasoning, which we’ll discuss later. We’re sharing a recipe for achieving state-of-the-art GUI grounding performance using GRPO.
+Reinforcement learning (RL) (e.g., GRPO) helps with grounding because of its inherent objective alignment—rewarding any successful clicks—rather than encouraging long textual Chain-of-Thought (CoT) reasoning (also referred to as “thinking”). In this blog, we will share a complete recipe towards training state-of-the-art GUI grounding models using GRPO.
 
 
 ## 🛠️ Setup
