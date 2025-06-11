@@ -8,7 +8,7 @@
 
     
 <div>
-   <a href="https://huggingface.co/datasets/HelloKKMe/grounding_dataset/tree/main"><strong>Dataset</strong></a>  | <a href=""><strong>Blog</strong></a> |  <a href="https://huggingface.co/HelloKKMe/grounding-r1-7B"><strong>7B Model</strong></a>  |  <a href="https://huggingface.co/HelloKKMe/grounding-r1-32B"><strong>32B Model</strong></a> |  <a href="https://huggingface.co/HelloKKMe/grounding-r1-72B"><strong>72B Model</strong></a>
+   <a href="https://huggingface.co/datasets/HelloKKMe/grounding_dataset/tree/main"><strong>Dataset</strong></a>  | <a href="https://huggingface.co/blog/HelloKKMe/grounding-r1"><strong>Blog</strong></a> |  <a href="https://huggingface.co/HelloKKMe/grounding-r1-7B"><strong>7B Model</strong></a>  |  <a href="https://huggingface.co/HelloKKMe/grounding-r1-32B"><strong>32B Model</strong></a> |  <a href="https://huggingface.co/HelloKKMe/grounding-r1-72B"><strong>72B Model</strong></a>
    </div>   
 </div>
     
