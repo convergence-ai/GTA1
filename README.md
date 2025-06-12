@@ -50,7 +50,7 @@ If you're using a custom dataset, please refer to the [preprocessing folder](pre
 An example script on slurm
 ```shell
 module load ...
-export ... setting your own enviroment vairable ***
+export *** ... setting your own enviroment vairable ***
 
 export RDZV_HOST=$(hostname)
 export RDZV_HOST=$(scontrol show hostnames "$SLURM_JOB_NODELIST" | head -n 1)
