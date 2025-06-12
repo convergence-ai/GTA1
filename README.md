@@ -49,7 +49,7 @@ If you're using a custom dataset, please refer to the [preprocessing folder](pre
 ## [Custom Use] Train Your Model
 An example script on slurm
 ```shell
-module load ...
+module load *** ... loading your own enviroment ***
 export *** ... setting your own enviroment vairable ***
 
 export RDZV_HOST=$(hostname)
