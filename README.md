@@ -196,7 +196,7 @@ This repository is built using the [VLM-R1](https://github.com/om-ai-lab/VLM-R1)
 If you use this repository or find it helpful in your research, please cite it as follows:
 ```bibtex
 @misc{yang2025groundingr1,
-author = {Yan Yang, Dongxu Li, Yuhao Yang, Ziyang Luo, Yutong Dai, Zeyuan Chen, Ran Xu， Liyuan Pan, Caiming Xiong, Junnan Li},
+author = {Yan Yang and Dongxu Li and Yuhao Yang and Ziyang Luo and Yutong Dai and Zeyuan Chen and Ran Xu and Liyuan Pan and Caiming Xiong and Junnan Li},
 title = {GRPO for GUI Grounding Done Right},
 year = {2025},
 howpublished = {https://github.com/Yan98/Grounding-R1/},
