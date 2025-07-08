@@ -1,18 +1,24 @@
 <div align="center">
-  <h1>GRPO for GUI Grounding Done Right</h1> 
+  <h1>GTA1: GUI Test-time Scaling Agent</h1> 
   
     
 <div style="width: 35%; text-align: center; margin:auto;">
-      <img style="width: 35%" src="assets/img/thumbnail.png">
+      <img style="width: 35%" src="assets/img/model.png">
 </div>
 
     
 <div>
-   <a href="https://huggingface.co/datasets/HelloKKMe/grounding_dataset/tree/main"><strong>Dataset</strong></a>  | <a href="https://huggingface.co/blog/HelloKKMe/grounding-r1"><strong>Blog</strong></a> |  <a href="https://huggingface.co/HelloKKMe/GTA1-7B"><strong>7B Model</strong></a>  |  <a href="https://huggingface.co/HelloKKMe/GTA1-32B"><strong>32B Model</strong></a> |  <a href="https://huggingface.co/HelloKKMe/GTA1-72B"><strong>72B Model</strong></a>
+   <a href=""><strong>Paper</strong></a>  | <a href="https://huggingface.co/datasets/HelloKKMe/grounding_dataset/tree/main"><strong>Dataset</strong></a>  | <a href="https://huggingface.co/blog/HelloKKMe/grounding-r1"><strong>Blog</strong></a> |  <a href="https://huggingface.co/HelloKKMe/GTA1-7B"><strong>7B Model</strong></a>  |  <a href="https://huggingface.co/HelloKKMe/GTA1-32B"><strong>32B Model</strong></a> |  <a href="https://huggingface.co/HelloKKMe/GTA1-72B"><strong>72B Model</strong></a>
    </div>   
 </div>
     
-Reinforcement learning (RL) (e.g., GRPO) helps with grounding because of its inherent objective alignment—rewarding any successful clicks—rather than encouraging long textual Chain-of-Thought (CoT) reasoning (also referred to as “thinking”). In this blog, we will share a complete recipe towards training state-of-the-art GUI grounding models using GRPO.
+Graphical user interface (GUI) agents autonomously operate across platforms (e.g., Linux) to complete tasks by interacting with visual elements. Specifically, a user instruction is decomposed into a sequence of action proposals, each corresponding to an interaction with the GUI.  After each action, the agent observes the updated GUI environment to plan the next step.  However, two main challenges arise: i) resolving ambiguity in task planning (i.e., the action proposal sequence), where selecting an appropriate plan is non-trivial, as many valid ones may exist; ii) accurately grounding actions in complex and high-resolution interfaces, i.e., precisely interacting with visual targets.
+
+This paper investigates the two aforementioned challenges with our GUI Test-time Scaling Agent, namely GTA1. First, to select the most appropriate action proposal, we introduce a test-time scaling method. At each step of task execution, we sample multiple candidate action proposals and leverage a judge model to evaluate and select the most suitable one. It trades off computation for better decision quality by concurrent sampling, shortening task execution steps, and improving overall performance. Second, we propose a model that achieves improved accuracy when grounding the selected action proposal to its corresponding visual elements. Our key insight is that reinforcement learning (RL) facilitates visual grounding through inherent objective alignments, rewarding successful clicks on interface elements.
+
+
+Experimentally, our GUI grounding model establishes state-of-the-art performance across diverse benchmarks.
+For example, GTA1-7B achieves 50.1%, 92.4%, and 67.7% accuracies on Screenspot-Pro, Screenspot-V2, and OSWorld-G benchmarks, respectively. Furthermore, when paired with a planner applying our test-time scaling strategy, it exhibits state-of-the-art agentic performance (e.g, 45.2% task success rate on OSWorld benchmark).  
 
 
 ## 🛠️ Setup
@@ -183,6 +189,11 @@ pred_x*=scale_x
 pred_y*=scale_y 
 print(pred_x,pred_y)
 ```
+
+## Agent Performance
+
+> The code will be updated soon.
+
 
 ## Contact
 
