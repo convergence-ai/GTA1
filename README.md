@@ -26,7 +26,7 @@ For example, GTA1-7B achieves 50.1%, 92.4%, and 67.7% accuracies on Screenspot-P
 
 - [July 8, 2025] GTA1 achieves the highest success rate on the [OSWorld benchmark](https://os-world.github.io/).
 
-- [June 11, 2025] Release the GTA1 Grounding model, which ranks 3rd on the [ScreenSpot Pro benchmark](https://gui-agent.github.io/grounding-leaderboard/).
+- [June 11, 2025] Release the GTA1 grounding model, which ranks 3rd on the [ScreenSpot Pro benchmark](https://gui-agent.github.io/grounding-leaderboard/).
 
 ## 🛠️ Setup
 
