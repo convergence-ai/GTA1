@@ -20,6 +20,13 @@ This paper investigates the two aforementioned challenges with our GUI Test-time
 Experimentally, our GUI grounding model establishes state-of-the-art performance across diverse benchmarks.
 For example, GTA1-7B achieves 50.1%, 92.4%, and 67.7% accuracies on Screenspot-Pro, Screenspot-V2, and OSWorld-G benchmarks, respectively. Furthermore, when paired with a planner applying our test-time scaling strategy, it exhibits state-of-the-art agentic performance (e.g, 45.2% task success rate on OSWorld benchmark).  
 
+## 📰 News
+
+- [July 9, 2025] Targeting the release of the GTA1 paper and agent code.
+
+- [July 8, 2025] GTA1 achieves the highest success rate on the [OSWorld benchmark](https://os-world.github.io/).
+
+- [June 11, 2025] Release the GTA1 Grounding model, which ranks 3rd on the [ScreenSpot Pro benchmark](https://gui-agent.github.io/grounding-leaderboard/).
 
 ## 🛠️ Setup
 
