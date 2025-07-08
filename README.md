@@ -2,8 +2,8 @@
   <h1>GTA1: GUI Test-time Scaling Agent</h1> 
   
     
-<div style="width: 35%; text-align: center; margin:auto;">
-      <img style="width: 35%" src="assets/img/model.png">
+<div style="width: 100%; text-align: center; margin:auto;">
+      <img style="width: 100%" src="assets/img/model.png">
 </div>
 
     
