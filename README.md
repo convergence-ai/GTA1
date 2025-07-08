@@ -8,7 +8,7 @@
 
     
 <div>
-   <a href="https://huggingface.co/datasets/HelloKKMe/grounding_dataset/tree/main"><strong>Dataset</strong></a>  | <a href="https://huggingface.co/blog/HelloKKMe/grounding-r1"><strong>Blog</strong></a> |  <a href="https://huggingface.co/HelloKKMe/grounding-r1-7B"><strong>7B Model</strong></a>  |  <a href="https://huggingface.co/HelloKKMe/grounding-r1-32B"><strong>32B Model</strong></a> |  <a href="https://huggingface.co/HelloKKMe/grounding-r1-72B"><strong>72B Model</strong></a>
+   <a href="https://huggingface.co/datasets/HelloKKMe/grounding_dataset/tree/main"><strong>Dataset</strong></a>  | <a href="https://huggingface.co/blog/HelloKKMe/grounding-r1"><strong>Blog</strong></a> |  <a href="https://huggingface.co/HelloKKMe/GTA1-7B"><strong>7B Model</strong></a>  |  <a href="https://huggingface.co/HelloKKMe/GTA1-32B"><strong>32B Model</strong></a> |  <a href="https://huggingface.co/HelloKKMe/GTA1-72B"><strong>72B Model</strong></a>
    </div>   
 </div>
     
@@ -122,7 +122,7 @@ def extract_coordinates(raw_string):
         return 0,0
 
 # Load model and processor
-model_path = "HelloKKMe/grounding-r1-32B"
+model_path = "HelloKKMe/GTA1-32B"
 max_new_tokens = 32
 
 model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
