@@ -8,7 +8,7 @@
 
     
 <div>
-   <a href=""><strong>Paper</strong></a>  | <a href="https://huggingface.co/datasets/HelloKKMe/grounding_dataset/tree/main"><strong>Dataset</strong></a>  | <a href="https://huggingface.co/blog/HelloKKMe/grounding-r1"><strong>Blog</strong></a> |  <a href="https://huggingface.co/HelloKKMe/GTA1-7B"><strong>7B Model</strong></a>  |  <a href="https://huggingface.co/HelloKKMe/GTA1-32B"><strong>32B Model</strong></a> |  <a href="https://huggingface.co/HelloKKMe/GTA1-72B"><strong>72B Model</strong></a>
+   <a href="https://arxiv.org/pdf/2507.05791"><strong>Paper</strong></a>  | <a href="https://huggingface.co/datasets/HelloKKMe/grounding_dataset/tree/main"><strong>Dataset</strong></a>  | <a href="https://huggingface.co/blog/HelloKKMe/grounding-r1"><strong>Blog</strong></a> |  <a href="https://huggingface.co/HelloKKMe/GTA1-7B"><strong>7B Model</strong></a>  |  <a href="https://huggingface.co/HelloKKMe/GTA1-32B"><strong>32B Model</strong></a> |  <a href="https://huggingface.co/HelloKKMe/GTA1-72B"><strong>72B Model</strong></a>
    </div>   
 </div>
     
@@ -22,7 +22,7 @@ For example, GTA1-7B achieves 50.1%, 92.4%, and 67.7% accuracies on Screenspot-P
 
 ## 📰 News
 
-- [July 9, 2025] Targeting the release of the GTA1 paper and agent code.
+- [July 9, 2025] Release the [paper](https://arxiv.org/pdf/2507.05791) and [code](https://github.com/xlang-ai/OSWorld/pull/246/files#diff-2b758e4fafd9a52ee08bd6072f64297e4d880193fcf3f0e480da954a6711afa7).
 
 - [July 8, 2025] GTA1 achieves the highest success rate on the [OSWorld benchmark](https://os-world.github.io/).
 
@@ -199,7 +199,7 @@ print(pred_x,pred_y)
 
 ## Agent Performance
 
-> The code will be updated soon.
+Refer to an inference example [here](https://github.com/xlang-ai/OSWorld/pull/246/files#diff-2b758e4fafd9a52ee08bd6072f64297e4d880193fcf3f0e480da954a6711afa7)
 
 
 ## Contact
