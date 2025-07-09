@@ -213,11 +213,14 @@ This repository is built using the [VLM-R1](https://github.com/om-ai-lab/VLM-R1)
 ## Citation
 If you use this repository or find it helpful in your research, please cite it as follows:
 ```bibtex
-@misc{yang2025groundingr1,
-author = {Yan Yang and Dongxu Li and Yuhao Yang and Ziyang Luo and Yutong Dai and Zeyuan Chen and Ran Xu and Liyuan Pan and Caiming Xiong and Junnan Li},
-title = {GRPO for GUI Grounding Done Right},
-year = {2025},
-howpublished = {https://github.com/Yan98/Grounding-R1/},
+@misc{yang2025gta1guitesttimescaling,
+      title={GTA1: GUI Test-time Scaling Agent}, 
+      author={Yan Yang and Dongxu Li and Yutong Dai and Yuhao Yang and Ziyang Luo and Zirui Zhao and Zhiyuan Hu and Junzhe Huang and Amrita Saha and Zeyuan Chen and Ran Xu and Liyuan Pan and Caiming Xiong and Junnan Li},
+      year={2025},
+      eprint={2507.05791},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2507.05791}, 
 }
 ```
 
