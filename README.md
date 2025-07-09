@@ -199,7 +199,7 @@ print(pred_x,pred_y)
 
 ## Agent Performance
 
-Refer to an inference example [here](https://github.com/xlang-ai/OSWorld/pull/246/files#diff-2b758e4fafd9a52ee08bd6072f64297e4d880193fcf3f0e480da954a6711afa7)
+Refer to an inference example [here](https://github.com/xlang-ai/OSWorld/pull/246/files#diff-2b758e4fafd9a52ee08bd6072f64297e4d880193fcf3f0e480da954a6711afa7).
 
 
 ## Contact
