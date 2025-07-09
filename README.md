@@ -208,7 +208,7 @@ Please contact `yan.yang@anu.edu.au` for any queries.
 
 ## Acknowledgement
 
-This repository is built using the [VLM-R1](https://github.com/om-ai-lab/VLM-R1) repository.
+We thank the open-source projects: [VLM-R1](https://github.com/om-ai-lab/VLM-R1), [Jedi](https://github.com/xlang-ai/OSWorld/blob/main/mm_agents/jedi_7b_agent.py), and [Agent-S2](https://github.com/simular-ai/Agent-S).
 
 ## Citation
 If you use this repository or find it helpful in your research, please cite it as follows:
