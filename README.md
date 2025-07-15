@@ -22,7 +22,7 @@ For example, GTA1-7B achieves 50.1%, 92.4%, and 67.7% accuracies on Screenspot-P
 
 ## 📰 News
 
-- [July 9, 2025] Release the [paper](https://arxiv.org/pdf/2507.05791) and [code](https://github.com/xlang-ai/OSWorld/pull/246/files#diff-2b758e4fafd9a52ee08bd6072f64297e4d880193fcf3f0e480da954a6711afa7).
+- [July 9, 2025] Release the [paper](https://arxiv.org/pdf/2507.05791) and [code](https://github.com/xlang-ai/OSWorld/blob/main/mm_agents/gta1_agent.py).
 
 - [July 8, 2025] GTA1 achieves the highest success rate on the [OSWorld benchmark](https://os-world.github.io/).
 
