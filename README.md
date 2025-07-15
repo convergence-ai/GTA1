@@ -210,6 +210,10 @@ Please contact `yan.yang@anu.edu.au` for any queries.
 
 We thank the open-source projects: [VLM-R1](https://github.com/om-ai-lab/VLM-R1), [Jedi](https://github.com/xlang-ai/OSWorld/blob/main/mm_agents/jedi_7b_agent.py), and [Agent-S2](https://github.com/simular-ai/Agent-S).
 
+## License
+
+This dataset follows CC-BY-NC-SA 4.0 license. Please use this dataset for non-commercial use ONLY.
+
 ## Citation
 If you use this repository or find it helpful in your research, please cite it as follows:
 ```bibtex
