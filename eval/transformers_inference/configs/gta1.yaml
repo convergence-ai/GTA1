@@ -1,0 +1,17 @@
+model:
+  # path: ../GTA1/grounding/gta1/checkpoint-450/
+  path: HelloKKMe/GTA1-7B
+  dtype: bf16
+  attn_implementation: flash_attention_2
+
+prompts:
+  system: |
+    You are an expert UI element locator. Given a GUI image and a user's element description, provide the coordinates of the specified element as a single (x,y) point. The image resolution is height {height} and width {width}. For elements with area, return the center point.
+
+    Output the coordinate pair exactly:
+    (x,y)
+
+generation:
+  max_new_tokens: 100
+  do_sample: false
+  temperature: null # 0.0
