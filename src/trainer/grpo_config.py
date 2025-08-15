@@ -224,6 +224,13 @@ class GRPOConfig(TrainingArguments):
     )
 
     # Parameters that control the training
+    importance_sampling_level: Optional[str] = field(
+        default=None,
+        metadata={
+            "help": "Importance sampling level. If set to 'sequence', the importance sampling is done at the sequence "
+            "level. If set to 'token', the importance sampling is done at the token level."
+        },
+    )
     learning_rate: float = field(
         default=1e-6,
         metadata={

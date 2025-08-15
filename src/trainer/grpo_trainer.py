@@ -44,6 +44,7 @@ from transformers.utils import is_peft_available
 from trl.data_utils import apply_chat_template, is_conversational, maybe_apply_chat_template
 from trl.models import create_reference_model, prepare_deepspeed, unwrap_model_for_generation
 from trl.trainer.grpo_config import GRPOConfig
+# from trl.trainer.gspo_trainer import GSPOTrainer
 from trl.trainer.utils import generate_model_card, get_comet_experiment_url
 from trl.core import masked_mean
 from accelerate.utils import is_peft_model, set_seed
@@ -62,6 +63,10 @@ import numpy as np
 # What we call a reward function is a callable that takes a list of prompts and completions and returns a list of
 # rewards. When it's a string, it's a model ID, so it's loaded as a pretrained model.
 RewardFunc = Union[str, PreTrainedModel, Callable[[list, list], list[float]]]
+
+def simple_data_collator(features):
+    """Simple data collator that returns features as-is."""
+    return features
 
 class RepeatRandomSampler(Sampler):
     """
@@ -336,8 +341,7 @@ class Qwen2VLGRPOTrainer(Trainer):
         self.reward_processing_classes = reward_processing_classes
 
         # Data collator
-        def data_collator(features):  # No data collation is needed in GRPO
-            return features
+        self.data_collator = simple_data_collator
 
         # Training arguments
         self.max_prompt_length = args.max_prompt_length
@@ -355,6 +359,8 @@ class Qwen2VLGRPOTrainer(Trainer):
         )
         self.beta = args.beta
         self.epsilon = args.epsilon
+        # Importance sampling level: "token" or "sequence" (or None)
+        self.importance_sampling_level = getattr(args, "importance_sampling_level", None)
 
         # Multi-step
         self.num_iterations = args.num_iterations  # = 𝜇 in the GRPO paper
@@ -377,7 +383,7 @@ class Qwen2VLGRPOTrainer(Trainer):
         super().__init__(
             model=model,
             args=args,
-            data_collator=data_collator,
+            data_collator=self.data_collator,
             train_dataset=train_dataset,
             eval_dataset=eval_dataset,
             processing_class=processing_class,
@@ -516,8 +522,12 @@ class Qwen2VLGRPOTrainer(Trainer):
             
             prompt_completion_ids = unwrapped_model.generate(
                 **prompt_inputs, 
-                generation_config=self.generation_config,
+                # generation_config=self.generation_config,
                 bad_words_ids=[[unwrapped_model.config.image_token_id]],
+                max_new_tokens=self.max_completion_length,
+                do_sample=True,  
+                temperature=1,
+                pad_token_id=self.processing_class.pad_token_id,
             )
 
             prompt_length = prompt_ids.size(1)
@@ -683,15 +693,35 @@ class Qwen2VLGRPOTrainer(Trainer):
         # and use per_token_logps.detach() instead
         old_per_token_logps = inputs["old_per_token_logps"] if self.num_iterations > 1 else per_token_logps.detach()
 
-        # Compute the policy ratio and clipped version
-        coef_1 = torch.exp(per_token_logps - old_per_token_logps)
-        coef_2 = torch.clamp(coef_1, 1 - self.epsilon, 1 + self.epsilon)
-        per_token_loss1 = coef_1 * advantages.unsqueeze(1)
-        per_token_loss2 = coef_2 * advantages.unsqueeze(1)
+        # # Compute the policy ratio and clipped version
+        # coef_1 = torch.exp(per_token_logps - old_per_token_logps)
+        # coef_2 = torch.clamp(coef_1, 1 - self.epsilon, 1 + self.epsilon)
+        # per_token_loss1 = coef_1 * advantages.unsqueeze(1)
+        # per_token_loss2 = coef_2 * advantages.unsqueeze(1)
+        # per_token_loss = -torch.min(per_token_loss1, per_token_loss2)
+        # Compute the policy ratio and clipped version, with optional importance sampling granularity
+        log_ratio = per_token_logps - old_per_token_logps
+        if self.importance_sampling_level in (None, "token"):
+            # print("Using token importance sampling")
+            ratio = torch.exp(log_ratio)
+        elif self.importance_sampling_level == "sequence":
+            # print("Using sequence importance sampling")
+            # Average log-ratio over generated tokens, then broadcast back per token
+            seq_log_ratio = (log_ratio * completion_mask).sum(-1) / completion_mask.sum(-1).clamp(min=1.0)
+            ratio = torch.exp(seq_log_ratio).unsqueeze(-1)
+        else:
+            raise ValueError(
+                f"Unknown importance sampling level: {self.importance_sampling_level}. Possible values are 'token' and 'sequence'."
+            )
+
+        clipped_ratio = torch.clamp(ratio, 1 - self.epsilon, 1 + self.epsilon)
+        per_token_loss1 = ratio * advantages.unsqueeze(1)
+        per_token_loss2 = clipped_ratio * advantages.unsqueeze(1)
         per_token_loss = -torch.min(per_token_loss1, per_token_loss2)
 
         # Add KL penalty if beta > 0
         if self.beta > 0:
+            # print("Adding KL penalty: ", self.beta)
             ref_per_token_logps = inputs["ref_per_token_logps"]
             per_token_kl = torch.exp(ref_per_token_logps - per_token_logps) - (ref_per_token_logps - per_token_logps) - 1
             per_token_loss = per_token_loss + self.beta * per_token_kl
@@ -777,7 +807,7 @@ class Qwen2VLGRPOTrainer(Trainer):
 
         model_card.save(os.path.join(self.args.output_dir, "README.md"))
 
-    def _get_train_sampler(self) -> Sampler:
+    def _get_train_sampler(self, train_dataset) -> Sampler:
         """Returns a sampler that ensures proper data sampling for GRPO training."""
         effective_batch_size = (
             self.args.per_device_train_batch_size
@@ -786,7 +816,7 @@ class Qwen2VLGRPOTrainer(Trainer):
         )
         
         return RepeatRandomSampler(
-            data_source=self.train_dataset,
+            data_source=train_dataset,
             mini_repeat_count=self.num_generations,
             batch_size=effective_batch_size // self.num_generations,
             repeat_count=self.num_iterations,
